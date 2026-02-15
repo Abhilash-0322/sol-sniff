@@ -1,0 +1,33 @@
+{
+  "name": "solsniff",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SolSniff — Solana Narrative Detection & Idea Generation Tool",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate",
+    "db:push": "prisma db push",
+    "db:generate": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.9.0",
+    "groq-sdk": "^0.8.0",
+    "lucide-react": "^0.563.0",
+    "next": "14.2.20",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "prisma": "^5.9.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
