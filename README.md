@@ -2,7 +2,7 @@
 
 > **An autonomous AI agent that detects emerging narratives in the Solana ecosystem and generates actionable build ideas — refreshed fortnightly.**
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-9945FF?style=for-the-badge&logo=vercel)](https://solsniff-vercel-c9lcjcpqx-abhilash-maruyas-projects.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-9945FF?style=for-the-badge&logo=vercel)](https://solsniffer.vercel.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-14F195?style=for-the-badge&logo=github)](https://github.com/Abhilash-0322/sol-sniff)
 
 ---

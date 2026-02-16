@@ -80,7 +80,7 @@ export default function Dashboard() {
           <br /> in the Solana Ecosystem
         </h1>
         <p className="hero-subtitle animate-fade-in-delay-1">
-          AI-powered signal detection across on-chain data, developer activity, social sentiment, and news — refreshed fortnightly.
+          AI-powered signal detection across on-chain data, developer activity, social sentiment, and news - refreshed fortnightly.
         </p>
         <div className="hero-stats animate-fade-in-delay-2">
           <div className="hero-stat">
