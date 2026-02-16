@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
           <footer className="footer">
             <div className="footer-inner">
-              <span>© 2026 SolSniff — Powered by AI Agents on Solana</span>
+              <span>© 2026 SolSniff - Powered by AI Agents on Solana</span>
               <div className="footer-links">
                 <a href="/about">Methodology</a>
                 <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
