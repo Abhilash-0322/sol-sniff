@@ -3,7 +3,7 @@ import { Zap } from "lucide-react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SolSniff — Solana Narrative Detection & Idea Engine",
+  title: "SolSniff - Solana Narrative Detection & Idea Engine",
   description: "AI-powered tool that detects emerging narratives in the Solana ecosystem and generates actionable build ideas. Refreshed fortnightly.",
   keywords: ["solana", "narrative detection", "crypto trends", "build ideas", "DeFi", "Web3"],
 };
