@@ -37,6 +37,11 @@ export class SocialCollector extends BaseCollector {
 
         try {
             const apiKey = appConfig.dataSources.lunarCrushApiKey;
+            
+            if (!apiKey) {
+                console.warn('LunarCrush API key not configured, skipping...');
+                return { signals, raw };
+            }
 
             const res = await this.fetchWithRetry(
                 `https://lunarcrush.com/api4/public/coins/sol/v1`,
@@ -47,9 +52,15 @@ export class SocialCollector extends BaseCollector {
                 }
             );
 
+            if (!res.ok) {
+                console.warn(`LunarCrush API returned ${res.status}: ${res.statusText}`);
+                return { signals, raw };
+            }
+            
+            const data = await res.json() as any;
+            raw.sol = data;
+            
             if (res.ok) {
-                const data = await res.json() as any;
-                raw.sol = data;
 
                 if (data.data) {
                     const d = data.data;
@@ -80,9 +91,13 @@ export class SocialCollector extends BaseCollector {
             if (trendingRes.ok) {
                 const trendingData = await trendingRes.json() as any;
                 raw.trending = trendingData;
+            } else {
+                console.warn(`LunarCrush trending API returned ${trendingRes.status}: ${trendingRes.statusText}`);
             }
         } catch (error) {
-            console.error('LunarCrush error:', error);
+            const errorMessage = error instanceof Error ? error.message : String(error);
+            console.error('LunarCrush error:', errorMessage);
+            // Return empty results rather than failing the entire social collection
         }
 
         return { signals, raw };

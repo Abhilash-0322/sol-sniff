@@ -38,20 +38,44 @@ export abstract class BaseCollector {
     }
 
     protected async fetchWithRetry(url: string, options: RequestInit = {}, retries = 3): Promise<Response> {
+        let lastResponse: Response | undefined;
+        let lastError: Error | undefined;
+        
         for (let i = 0; i < retries; i++) {
             try {
                 const response = await fetch(url, options);
-                if (response.ok) return response;
-                if (response.status === 429) {
-                    await new Promise(r => setTimeout(r, Math.pow(2, i) * 1000));
-                    continue;
+                lastResponse = response;
+                
+                if (response.ok) {
+                    return response;
                 }
-                if (i === retries - 1) return response;
+                
+                // On last retry, return whatever we got
+                if (i === retries - 1) {
+                    return response;
+                }
+                
+                // For rate limits and other errors, wait and retry
+                const delay = Math.pow(2, i) * 1000;
+                await new Promise(r => setTimeout(r, delay));
             } catch (error) {
-                if (i === retries - 1) throw error;
-                await new Promise(r => setTimeout(r, Math.pow(2, i) * 1000));
+                lastError = error as Error;
+                
+                // On last retry, throw the error
+                if (i === retries - 1) {
+                    throw error;
+                }
+                
+                // Wait before retry
+                const delay = Math.pow(2, i) * 1000;
+                await new Promise(r => setTimeout(r, delay));
             }
         }
-        throw new Error(`Failed after ${retries} retries`);
+        
+        // Fallback (should not be reached, but for safety)
+        if (lastResponse) {
+            return lastResponse;
+        }
+        throw lastError || new Error(`Failed after ${retries} retries`);
     }
 }
